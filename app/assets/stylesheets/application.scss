@@ -100,5 +100,21 @@ span.glyphicon.glyphicon-chevron-down {
 }
 
 h2.index-guide {
-  font-size: 36px;
+  display: inline;
+  font-size: 60px;
+}
+
+
+
+
+// DASHBOARD PAGE //
+
+.dashboard-text {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: 96px;
+}
+
+button.dropdown-toggle {
+  margin-top: 20px;
 }

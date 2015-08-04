@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-03T20:33:27-06:00">2015-08-03T20:33:27-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-03T21:32:49-06:00">2015-08-03T21:32:49-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.02
+         1.05
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>19</b> files in total.
-    <b>69</b> relevant lines. 
-    <span class="green"><b>69</b> lines covered</span> and
+    <b>74</b> relevant lines. 
+    <span class="green"><b>74</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -61,7 +61,7 @@
       </tr>
       
       <tr>
-        <td class="strong"><a href="#97e42cb3e3291446bd451d7aeebcbb13a4093fbb" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
+        <td class="strong"><a href="#980f017907716d1f5e1cb1a94e5e6bf254736a5e" class="src_link" title="app/controllers/dashboard_controller.rb">app/controllers/dashboard_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>5</td>
         <td>2</td>
@@ -223,11 +223,11 @@
       <tr>
         <td class="strong"><a href="#375062f2cf0d6b6e9b7c110865cb746aef3882dc" class="src_link" title="spec/feature/unauth_user_spec.rb">spec/feature/unauth_user_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>27</td>
-        <td>14</td>
-        <td>14</td>
+        <td>35</td>
+        <td>19</td>
+        <td>19</td>
         <td>0</td>
-        <td>1.1</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -304,9 +304,9 @@
   </pre>
 </div>
       
-        <div class="source_table" id="97e42cb3e3291446bd451d7aeebcbb13a4093fbb">
+        <div class="source_table" id="980f017907716d1f5e1cb1a94e5e6bf254736a5e">
   <div class="header">
-    <h3>app/controllers/sessions_controller.rb</h3>
+    <h3>app/controllers/dashboard_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>2</b> relevant lines. 
@@ -321,7 +321,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class SessionsController &lt; ApplicationController</code>
+          <code class="ruby">class DashboardController &lt; ApplicationController</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -333,7 +333,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  def new</code>
+          <code class="ruby">  def show</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -1557,7 +1557,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  get &#39;/login&#39;, as: :login, to: &#39;sessions#new&#39;</code>
+          <code class="ruby">  get &#39;/dashboard&#39;, as: :dashboard, to: &#39;dashboard#show&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -1587,8 +1587,8 @@
     <h3>spec/feature/unauth_user_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>14</b> relevant lines. 
-      <span class="green"><b>14</b> lines covered</span> and
+      <b>19</b> relevant lines. 
+      <span class="green"><b>19</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1626,8 +1626,8 @@
           <code class="ruby">  before(:each) do</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="6">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="6">
+          <span class="hits">4</span>
           
           <code class="ruby">    visit root_path</code>
         </li>
@@ -1737,7 +1737,7 @@
         <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(current_path).to eq(login_path)</code>
+          <code class="ruby">      expect(current_path).to eq(dashboard_path)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
@@ -1749,10 +1749,58 @@
         <li class="never" data-hits="" data-linenumber="26">
           
           
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &#39;displays the user dashboard page&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      click_link &quot;Get Started!&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">      </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="30">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;Enter your origin&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;Enter your destination&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;What type of trip?&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="35">
           
           
           <code class="ruby">end</code>
