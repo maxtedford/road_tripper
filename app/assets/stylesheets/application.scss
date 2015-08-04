@@ -4,10 +4,11 @@
 
 
 
+
 // NAVBAR //
 
 .container-fluid {
-  background-color: #896e4e;
+  background-color: #a89476;
 }
 
 .navbar {
@@ -20,19 +21,31 @@
 }
 
 .navbar-default {
-  border-color: #896e4e;
+  border-color: #a89476;
 }
+
+.glyphicon-road {
+  color: black;
+}
+
+.roadtripper-logo-text {
+  display: inline-block;
+  font-family: 'Lobster', cursive;
+  color: black;
+  margin: 0px 15px;
+}
+
 
 
 
 // WELCOME JUMBOTRON //
 
 .welcome-container {
-  height: 510px;
+  height: 450px;
 }
 
 #welcome-jumbo {
-  background: url(road_tripper.jpg) right bottom no-repeat;
+  background: url(road_tripper.jpg) right top no-repeat;
   background-size: cover;
   margin-bottom: 0px;
 }
@@ -40,13 +53,52 @@
 .welcome-text {
   color: #FFF4B9;
   text-align: center;
+  font-family: 'Lobster', cursive;
+}
+
+h1.welcome-text {
+  font-size: 96px;
+}
+
+p.welcome-text {
+  font-size: 36px;
 }
 
 .jumbotron h1 {
   color: #FFF4B9;
-  padding-top: 150px;
 }
 
 p.welcome-button {
   text-align: center;
+  margin-top: 40px;
+  font-family: 'Lobster', cursive;
+}
+
+span.glyphicon.glyphicon-chevron-down {
+  display: inline;
+  color: #FFF4B9;
+  font-size: 60px;
+}
+
+.col-md-12 {
+  text-align: center;
+  padding-top: 40px;
+}
+
+
+
+
+// WELCOME NOTES //
+
+.index-guides {
+  margin-top: 40px;
+}
+
+.index-guide {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+
+h2.index-guide {
+  font-size: 36px;
 }
