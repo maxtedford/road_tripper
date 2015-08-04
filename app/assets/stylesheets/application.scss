@@ -1,0 +1,52 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+
+// NAVBAR //
+
+.container-fluid {
+  background-color: #896e4e;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #68a3c1;
+}
+
+.navbar-default {
+  border-color: #896e4e;
+}
+
+
+
+// WELCOME JUMBOTRON //
+
+.welcome-container {
+  height: 510px;
+}
+
+#welcome-jumbo {
+  background: url(road_tripper.jpg) right bottom no-repeat;
+  background-size: cover;
+  margin-bottom: 0px;
+}
+
+.welcome-text {
+  color: #FFF4B9;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  color: #FFF4B9;
+  padding-top: 150px;
+}
+
+p.welcome-button {
+  text-align: center;
+}
