@@ -17,19 +17,5 @@ describe 'the unauthenticated user', type: :feature do
       expect(page).to have_content("Helping you discover the best your road trip has to offer")
       expect(page).to have_link("Get Started!")
     end
-    
-    it 'redirects to the login page when user clicks the button' do
-      click_link "Get Started!"
-      
-      expect(current_path).to eq(dashboard_path)
-    end
-    
-    it 'displays the user dashboard page' do
-      click_link "Get Started!"
-      
-      expect(page).to have_content("Enter your origin")
-      expect(page).to have_content("Enter your destination")
-      expect(page).to have_content("What type of trip?")
-    end
   end
 end
