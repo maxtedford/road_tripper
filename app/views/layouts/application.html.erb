@@ -19,14 +19,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<% dashboard_path %>">
         <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
-        <p class="roadtripper-logo-text">RoadTripper</p>
+        <% if current_user %>
+          <p class="roadtripper-logo-text"><%= current_user.first_name %></p>
+        <% else %>
+          <p class="roadtripper-logo-text">RoadTripper</p>
+        <% end %>
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if current_user %><a href="<%= logout_path %>" id="roadtripper-logout">Logout</a><% end %>
+        </li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
