@@ -23,7 +23,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="dashboard-text">Welcome, <%= current_user.first_name %></h1>
+      <h1 class="index-guide">Welcome, <%= current_user.first_name %>! Tell us about your trip...</h1>
     </div>
   </div>
 </div>
@@ -31,26 +31,23 @@
 <div class="container">
   <!-- Example row of columns -->
   <div class="row index-guides">
-    <div class="col-md-6">
-      <h2 class="index-guide">Enter your origin:</h2>
-      <form>
+    <%= form_tag(new_trip_path, method: "get") do %>
+      <div class="col-md-6">
+        <h2 class="index-guide">Origin:</h2>
         <div class="form-group">
-          <label for="origin">Address or city</label>
-          <input type="text" class="form-control" id="origin-field" placeholder="Origin">
+          <%= label_tag(:origin, "Address or City") %>
+          <%= text_field_tag(:origin, "Origin", class: "form-control", id: "origin-field") %>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-      </form>
-    </div>
-    <div class="col-md-6">
-      <h2 class="index-guide">Enter your destination:</h2>
-      <form>
+      </div>
+      <div class="col-md-6">
+        <h2 class="index-guide">Destination:</h2>
         <div class="form-group">
-          <label for="destination">Address or city</label>
-          <input type="text" class="form-control" id="destination-field" placeholder="Destination">
+          <%= label_tag(:destination, "Address or City") %>
+          <%= text_field_tag(:destination, "Destination", class: "form-control", id: "destination-field") %>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-      </form>
-    </div>
+      </div>
+      <%= submit_tag("Submit", class: "btn btn-primary btn-lg") %>
+    <% end %>
   </div>
 </div> <!-- /container -->
 

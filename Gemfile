@@ -28,6 +28,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
+gem 'google_directions'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -48,7 +49,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   gem 'rspec-rails'
-  gem 'pry-rails'
+  gem 'pry'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
