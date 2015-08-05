@@ -21,11 +21,7 @@
       </button>
       <a class="navbar-brand" href="<% dashboard_path %>">
         <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
-        <% if current_user %>
-          <p class="roadtripper-logo-text"><%= current_user.first_name %></p>
-        <% else %>
-          <p class="roadtripper-logo-text">RoadTripper</p>
-        <% end %>
+        <p class="roadtripper-logo-text">RoadTripper</p>
       </a>
     </div>
 
@@ -33,7 +29,19 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <% if current_user %><a href="<%= logout_path %>" id="roadtripper-logout">Logout</a><% end %>
+          <% if current_user %>
+            <a href="<%= dashboard_path %>" id="nav-user-name"><%= current_user.first_name %></a>
+          <% end %>
+        </li>
+        <li>
+          <% if current_user %>
+            <img src="<%= current_user.image %>" alt="user-image" class="img-circle img-responsive center-block">
+          <% end %>
+        </li>
+        <li>
+          <% if current_user %>
+            <a href="<%= logout_path %>" id="roadtripper-logout">Logout</a>
+          <% end %>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
