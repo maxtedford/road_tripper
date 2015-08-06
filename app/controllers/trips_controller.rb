@@ -1,7 +1,8 @@
 class TripsController < ApplicationController
   
   def new
-    @trip = GoogleDirections.new(params[:origin], params[:destination])
+    gon.origin      = params[:origin]
+    gon.destination = params[:destination]
     redirect_to dashboard_path
   end
 end

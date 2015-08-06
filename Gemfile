@@ -28,7 +28,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
-gem 'google_directions'
+gem 'gon', '~> 6.0.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
