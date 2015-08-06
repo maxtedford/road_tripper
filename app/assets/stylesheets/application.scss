@@ -135,6 +135,10 @@ p.index-text {
 
 // DASHBOARD PAGE //
 
+div.dropdown {
+  margin-bottom: 40px;
+}
+
 .dashboard-text {
   text-align: center;
   font-family: 'Lobster', cursive;
@@ -145,8 +149,8 @@ button.dropdown-toggle {
   margin-top: 20px;
 }
 
-div#map-canvas.container {
-  margin: 56px;
+div#map-canvas {
+  padding: 40px;
 }
 
 html, body, #map-canvas {
