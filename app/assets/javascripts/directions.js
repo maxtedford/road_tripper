@@ -1,33 +1,32 @@
-$('document').ready( function() {
-
-  var directionsDisplay;
-  var directionsService = new google.maps.DirectionsService();
-  var map;
-
-  function initialize() {
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    var kansasCity = new google.maps.LatLng(39.091919, -94.5757195);
-    var mapOptions = {
-      zoom:7,
-      center: kansasCity
-    }
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    directionsDisplay.setMap(map);
-  }
-
-  function calcRoute() {
-    var origin = gon.origin;
-    var destination = gon.destination;
-    var request = {
-      origin: origin,
-      destination: destination,
-      travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(result, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(result);
-      }
-    });
-  }
+$(document).ready( function() {
   
+  $('#route-submit').on('click', function() {
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+    initialize();
+    displayRoute();
+
+    function initialize() {
+      map = new google.maps.Map(document.getElementById("map-canvas"));
+      directionsDisplay.setMap(map);
+    }
+
+    function displayRoute() {
+
+      var start = document.getElementById("origin-field").value;
+      var end = document.getElementById("destination-field").value;
+
+      var request = {
+        origin : start,
+        destination : end,
+        travelMode : google.maps.TravelMode.DRIVING
+      };
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+    }
+  });
 });

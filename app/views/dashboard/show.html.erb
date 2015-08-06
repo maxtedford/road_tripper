@@ -1,25 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <%= include_gon %>
-  <style type="text/css">
-    html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-  </style>
-  <script src="directions.js"></script>
-  <script type="text/javascript"
-          src="//maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>">
-  </script>
-  <script type="text/javascript">
-    var map;
-    function initialize() {
-      map = new google.maps.Map(document.getElementById('map-canvas'),{
-        center: { lat: 39.091919, lng: -94.5757195},
-        zoom: 4
-      });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
-</head>
 
 <body>
 <div class="container">
@@ -32,25 +12,25 @@
 
 <div class="container">
   <!-- Example row of columns -->
-  <div class="row index-guides">
-    <%= form_tag(new_trip_path, method: "get") do %>
+  <form>
+    <div class="row index-guides">
       <div class="col-md-6">
         <h2 class="index-guide">Origin:</h2>
         <div class="form-group">
-          <%= label_tag(:origin, "Address or City") %>
-          <%= text_field_tag(:origin, "Origin", class: "form-control", id: "origin-field") %>
+          <label for="origin">Address or City</label>
+          <input type="text" class="form-control" id="origin-field" placeholder="Origin">
         </div>
       </div>
       <div class="col-md-6">
         <h2 class="index-guide">Destination:</h2>
         <div class="form-group">
-          <%= label_tag(:destination, "Address or City") %>
-          <%= text_field_tag(:destination, "Destination", class: "form-control", id: "destination-field") %>
+          <label for="destination">Address or City</label>
+          <input type="text" class="form-control" id="destination-field" placeholder="Destination">
         </div>
       </div>
-      <%= submit_tag("Submit", class: "btn btn-primary btn-lg") %>
-    <% end %>
-  </div>
+      <button type="submit" class="btn btn-primary btn-lg" id="route-submit">Submit</button>
+    </div>
+  </form>
 </div> <!-- /container -->
 
 <div class="container">
@@ -74,7 +54,7 @@
   </div>
 </div>
 
-<div class="container" id="map-canvas"></div>
+<div id="map-canvas"></div>
 
 </body>
 </html>

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-# force_ssl :only => :create 
   
   def create
     @user = User.find_or_create_from_oauth(oauth)
