@@ -16,7 +16,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
-gem 'gon', '~> 6.0.1'
+gem 'rails_12factor'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
