@@ -6,7 +6,6 @@ $(document).ready( function() {
     var map;
     initialize();
     displayRoute();
-    alert('the JS is working');
 
     function initialize() {
       map = new google.maps.Map(document.getElementById("map-canvas"));
