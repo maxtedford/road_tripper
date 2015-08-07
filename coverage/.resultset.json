@@ -119,6 +119,7 @@
         null,
         null,
         1,
+        1,
         null,
         null
       ],
@@ -261,11 +262,23 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         null
       ],
       "/Users/Maximus225/Turing/module_3/road_tripper/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/Maximus225/Turing/module_3/road_tripper/spec/models/trip_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/Maximus225/Turing/module_3/road_tripper/app/models/trip.rb": [
         1,
         null
       ],
@@ -383,17 +396,27 @@
       "/Users/Maximus225/Turing/module_3/road_tripper/app/controllers/application_controller.rb": [
         1,
         null,
+        1,
+        null,
         null,
         1,
         null,
         1,
         null,
         1,
-        4,
+        null,
+        1,
+        6,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
         null,
         null
       ]
     },
-    "timestamp": 1438744625
+    "timestamp": 1438898961
   }
 }
