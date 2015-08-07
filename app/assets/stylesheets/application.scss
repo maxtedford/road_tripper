@@ -143,13 +143,17 @@ p.index-text {
 
 button.dropdown-toggle {
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
-div#map-canvas.container {
-  margin: 56px;
+div#map-container {
+  height: 90%;
+  width: 90%;
+  padding-left: 110px;
+  padding-bottom: 40px;
 }
 
-html, body, #map-canvas {
+html, body, #map-container, #map-canvas {
   margin: 0;
   padding: 0;
   height: 100%;
