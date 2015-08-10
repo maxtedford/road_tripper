@@ -4,40 +4,39 @@ $(document).ready( function() {
   var geocoder;
   var map;
   var service;
-  var waypts = [];
   
   $('#route-submit').on('click', function() {
 
     var start = document.getElementById("origin-field").value;
     var end = document.getElementById("destination-field").value;
-    var origin = new google.maps.LatLng(34.0522342, -118.2436849);
-    var destination = new google.maps.LatLng(40.7127837, -74.00594130000002);
-    var midpoint = calculateMidpoint(origin, destination);
-    var midDistance = calculateDistance(origin, midpoint);
-    geocodeAddress(start);
-    geocodeAddress(end);
-    
     initialize();
-    conductSearch(midpoint, midDistance);
+
+    geocodeAddress(start, function (results) {
+      var origin = convertGeocodeObjectToLatLng(results);
+      geocodeAddress(end, function (results) {
+        var destination = convertGeocodeObjectToLatLng(results);
+        
+        var distance = calculateDistance(origin, destination);
+        var midpoint = calculateMidpoint(origin, destination);
+        conductSearch(midpoint, distance);
+      })
+    });
+    
     displayRoute(start, end);
   });
+
+  function geocodeAddress(input, callback) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': input }, callback); 
+  }
+  
+  function convertGeocodeObjectToLatLng(results) {
+    return new google.maps.LatLng(results[0].geometry.location["G"], results[0].geometry.location["K"]);
+  }
 
   function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"));
     directionsDisplay.setMap(map);
-  }
-
-  function geocodeAddress(input) {
-    geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': input}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        latlng = new google.maps.LatLng(results[0].geometry.location["G"], results[0].geometry.location["K"]);
-        return latlng;
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-      debugger;
-    })
   }
 
   function conductSearch(midpoint, distance) {
@@ -47,7 +46,7 @@ $(document).ready( function() {
     } else {
       distance = distance.toString()
     }
-    request = {
+    var request = {
       location: midpoint,
       radius: distance,
       types: ["amusement_park", "aquarium", "art_gallery", "museum", "stadium", "zoo"],
@@ -58,17 +57,14 @@ $(document).ready( function() {
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      place = results.slice(0, 1);
+      var waypoints = [];
+      var place = results.slice(0, 1);
+      waypoints.push({
+        location: place.geometry.location,
+        stopover: false
+      });
       createMarker(place[0]);
-      createWaypoint(place[0]);
     }
-  }
-
-  function createWaypoint(place) {
-    waypts.push({
-      location:place.geometry.location,
-      stopover:true
-    });
   }
   
   function createMarker(place) {
@@ -80,21 +76,21 @@ $(document).ready( function() {
   }
   
   function calculateMidpoint(origin, destination) {
-    midpoint = google.maps.geometry.spherical.interpolate(origin, destination, 0.5);
+    var midpoint = google.maps.geometry.spherical.interpolate(origin, destination, 0.5);
     return midpoint
   }
   
   function calculateDistance(origin, destination) {
-    distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
     return distance;
   }
 
-  function displayRoute(start, end) {
+  function displayRoute(start, end, waypoints) {
     var request = {
       origin : start,
       destination : end,
       travelMode : google.maps.TravelMode.DRIVING,
-      waypoints : waypts,
+      waypoints : waypoints,
       optimizeWaypoints: true
     };
     directionsService.route(request, function(response, status) {
