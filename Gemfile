@@ -16,7 +16,7 @@ gem 'aws-sdk'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
 gem 'rails_12factor'
-gem 'skylight'
+gem 'skylight', '~> 0.7.1'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development

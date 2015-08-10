@@ -20,7 +20,7 @@ $(document).ready( function() {
         var distance = calculateDistance(origin, destination);
         var midpoint = calculateMidpoint(origin, destination);
         conductSearch(midpoint, distance);
-        displayRoute(start, end);
+        displayRoute(start, end)
       })
     });
   });
