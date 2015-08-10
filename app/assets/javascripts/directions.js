@@ -4,6 +4,7 @@ $(document).ready( function() {
   var geocoder;
   var map;
   var service;
+  var waypoints = [];
   
   $('#route-submit').on('click', function() {
 
@@ -19,10 +20,9 @@ $(document).ready( function() {
         var distance = calculateDistance(origin, destination);
         var midpoint = calculateMidpoint(origin, destination);
         conductSearch(midpoint, distance);
+        displayRoute(start, end);
       })
     });
-    
-    displayRoute(start, end);
   });
 
   function geocodeAddress(input, callback) {
@@ -56,15 +56,11 @@ $(document).ready( function() {
   }
 
   function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var waypoints = [];
-      var place = results.slice(0, 1);
-      waypoints.push({
-        location: place.geometry.location,
-        stopover: false
-      });
-      createMarker(place[0]);
-    }
+    waypoints.push({
+      location: results[0].geometry.location,
+      stopover: true 
+    });
+    createMarker(results[0]);
   }
   
   function createMarker(place) {
@@ -85,7 +81,7 @@ $(document).ready( function() {
     return distance;
   }
 
-  function displayRoute(start, end, waypoints) {
+  function displayRoute(start, end) {
     var request = {
       origin : start,
       destination : end,
@@ -93,6 +89,7 @@ $(document).ready( function() {
       waypoints : waypoints,
       optimizeWaypoints: true
     };
+    debugger;
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
