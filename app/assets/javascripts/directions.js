@@ -4,8 +4,7 @@ $(document).ready( function() {
   var geocoder;
   var map;
   var service;
-  //geocodeAddress(start);
-  //geocodeAddress(end);
+  var waypts = [];
   
   $('#route-submit').on('click', function() {
 
@@ -15,28 +14,30 @@ $(document).ready( function() {
     var destination = new google.maps.LatLng(40.7127837, -74.00594130000002);
     var midpoint = calculateMidpoint(origin, destination);
     var midDistance = calculateDistance(origin, midpoint);
+    geocodeAddress(start);
+    geocodeAddress(end);
     
     initialize();
     conductSearch(midpoint, midDistance);
     displayRoute(start, end);
-    
-    //function geocodeAddress(input) {
-    //  geocoder = new google.maps.Geocoder();
-    //  geocoder.geocode( { 'address': input}, function(results, status) {
-    //   if (status == google.maps.GeocoderStatus.OK) {
-    //     latlng = new google.maps.LatLng(results[0].geometry.location["G"], results[0].geometry.location["K"]);
-    //     return latlng;
-    //   } else {
-    //     alert("Geocode was not successful for the following reason: " + status);
-    //   }
-    //  })
-    //}
-    
   });
 
   function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"));
     directionsDisplay.setMap(map);
+  }
+
+  function geocodeAddress(input) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': input}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        latlng = new google.maps.LatLng(results[0].geometry.location["G"], results[0].geometry.location["K"]);
+        return latlng;
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+      debugger;
+    })
   }
 
   function conductSearch(midpoint, distance) {
@@ -57,15 +58,17 @@ $(document).ready( function() {
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var waypts = [];
       place = results.slice(0, 1);
-      createMarker(place);
-      waypts.push({
-        location:place.geometry.location,
-        stopover:true
-      });
-      return waypts;
+      createMarker(place[0]);
+      createWaypoint(place[0]);
     }
+  }
+
+  function createWaypoint(place) {
+    waypts.push({
+      location:place.geometry.location,
+      stopover:true
+    });
   }
   
   function createMarker(place) {
@@ -94,7 +97,6 @@ $(document).ready( function() {
       waypoints : waypts,
       optimizeWaypoints: true
     };
-    debugger;
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
