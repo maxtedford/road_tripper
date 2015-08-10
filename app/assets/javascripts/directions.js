@@ -89,7 +89,6 @@ $(document).ready( function() {
       waypoints : waypoints,
       optimizeWaypoints: true
     };
-    debugger;
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
