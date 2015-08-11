@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
-force_ssl only: [:create]
+if Rails.env != "development"
+  force_ssl only: [:create]
+end
   
   def create
     @user = User.find_or_create_from_oauth(oauth)

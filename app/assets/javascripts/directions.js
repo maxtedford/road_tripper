@@ -102,6 +102,8 @@ function displaySimpleRoute(start, end) {
 
 $(document).ready(function() {
   
+  $('#route-submit').click();
+  
   $('#route-submit').on('click', function() {
 
     $('#place-title').empty();
