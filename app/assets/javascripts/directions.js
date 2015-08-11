@@ -4,12 +4,15 @@ $(document).ready( function() {
   var geocoder;
   var map;
   var service;
-  var waypoints = [];
+  var waypoints;
+  var start;
+  var end;
   
   $('#route-submit').on('click', function() {
 
-    var start = document.getElementById("origin-field").value;
-    var end = document.getElementById("destination-field").value;
+    waypoints = [];
+    start = document.getElementById("origin-field").value;
+    end = document.getElementById("destination-field").value;
     initialize();
 
     geocodeAddress(start, function (results) {
@@ -20,7 +23,6 @@ $(document).ready( function() {
         var distance = calculateDistance(origin, destination);
         var midpoint = calculateMidpoint(origin, destination);
         conductSearch(midpoint, distance);
-        displayRoute(start, end)
       })
     });
   });
@@ -52,17 +54,17 @@ $(document).ready( function() {
       types: ["amusement_park", "aquarium", "art_gallery", "museum", "zoo"],
       rankBy: google.maps.places.RankBy.PROMINENCE
     };
-    service.nearbySearch(request, callback);
+    service.nearbySearch(request, renderPointOfInterest);
   }
 
-  function callback(results, status) {
-    debugger;
+  function renderPointOfInterest(results) {
     $('#place-title').append(results[0].name);
     waypoints.push({
       location: results[0].geometry.location,
       stopover: true 
     });
     createMarker(results[0]);
+    displayRoute(start, end);
   }
   
   function createMarker(place) {
