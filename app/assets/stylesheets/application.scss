@@ -117,11 +117,13 @@ span.glyphicon.glyphicon-chevron-down {
 }
 
 .index-guide {
+  color: white;
   text-align: center;
   font-family: 'Lobster', cursive;
 }
 
 h2.index-guide {
+  color: white;
   display: inline;
   font-size: 40px;
 }
@@ -137,6 +139,12 @@ p.index-text {
 
 div.dropdown {
   margin-bottom: 40px;
+}
+
+#dashboard {
+  background: url(Dashboard.jpg) right top no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .dashboard-text {

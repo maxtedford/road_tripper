@@ -14,26 +14,26 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-10T19:12:44-06:00">2015-08-10T19:12:44-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-11T15:42:57-06:00">2015-08-11T15:42:57-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">98.03%</span></span>
+    (<span class="covered_percent"><span class="green">98.05%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.11
+         1.05
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>24</b> files in total.
-    <b>152</b> relevant lines. 
-    <span class="green"><b>149</b> lines covered</span> and
+    <b>154</b> relevant lines. 
+    <span class="green"><b>151</b> lines covered</span> and
     <span class="red"><b>3</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,7 +57,7 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>3.0</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -72,10 +72,10 @@
       
       <tr>
         <td class="strong"><a href="#97e42cb3e3291446bd451d7aeebcbb13a4093fbb" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
-        <td class="red strong">76.92 %</td>
-        <td>23</td>
-        <td>13</td>
-        <td>10</td>
+        <td class="red strong">80.0 %</td>
+        <td>26</td>
+        <td>15</td>
+        <td>12</td>
         <td>3</td>
         <td>0.8</td>
       </tr>
@@ -380,8 +380,8 @@
           <code class="ruby">  def current_user</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="11">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="7" data-linenumber="11">
+          <span class="hits">7</span>
           
           <code class="ruby">    @current_user ||= User.find(session[:user_id]) if session[:user_id]</code>
         </li>
@@ -489,10 +489,10 @@
         <div class="source_table" id="97e42cb3e3291446bd451d7aeebcbb13a4093fbb">
   <div class="header">
     <h3>app/controllers/sessions_controller.rb</h3>
-    <h4><span class="red">76.92 %</span> covered</h4>
+    <h4><span class="red">80.0 %</span> covered</h4>
     <div>
-      <b>13</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
+      <b>15</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
       <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
@@ -506,133 +506,151 @@
           <code class="ruby">class SessionsController &lt; ApplicationController</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="2">
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  </code>
+          <code class="ruby">if Rails.env != &quot;development&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  def create</code>
+          <code class="ruby">  force_ssl only: [:create]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="4">
           
-          <code class="ruby">    @user = User.find_or_create_from_oauth(oauth)</code>
+          
+          <code class="ruby">end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="5">
           
-          <code class="ruby">    if @user</code>
+          
+          <code class="ruby">  </code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">      session[:user_id] = @user.id</code>
+          <code class="ruby">  def create</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
+          <code class="ruby">    @user = User.find_or_create_from_oauth(oauth)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if @user</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      session[:user_id] = @user.id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
           <code class="ruby">      redirect_to dashboard_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="9">
-          
-          
-          <code class="ruby">      redirect_to root_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="10">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">      redirect_to root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
           <code class="ruby">  def destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
+        <li class="missed" data-hits="0" data-linenumber="17">
           
           
           <code class="ruby">    session.destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="missed" data-hits="0" data-linenumber="18">
           
           
           <code class="ruby">    redirect_to root_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
+        <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
+        <li class="covered" data-hits="1" data-linenumber="23">
           <span class="hits">1</span>
           
           <code class="ruby">  def oauth</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="21">
+        <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
           <code class="ruby">    request.env[&quot;omniauth.auth&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">end</code>
@@ -1109,7 +1127,7 @@
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">    config.force_ssl = false</code>
+          <code class="ruby">    config.force_ssl = true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="35">
