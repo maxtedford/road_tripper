@@ -17,8 +17,30 @@ function convertGeocodeObjectToLatLng(results) {
   return new google.maps.LatLng(latlng["G"], latlng["K"]);
 }
 
+function extractCoordinates() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(coords);
+    debugger;
+  } else {
+    var x = document.getElementById("map-canvas");
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function coords(position) {
+  var coordinates = new google.maps.LatLng({ 
+    lat: position.coords.latitude,
+    lng: position.coords.longitude });
+  initialize(coordinates)
+}
+
 function initialize() {
-  map = new google.maps.Map(document.getElementById("map-canvas"));
+  var mapOptions = {
+    zoom: 4,
+    center: {lat: 39.091919, lng: -94.5757195},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   directionsDisplay.setMap(map);
 }
 
@@ -102,6 +124,8 @@ function displaySimpleRoute(start, end) {
 
 $(document).ready(function() {
   
+  initialize();
+  
   $('#route-submit').click();
   
   $('#route-submit').on('click', function() {
@@ -112,7 +136,7 @@ $(document).ready(function() {
     end = document.getElementById("destination-field").value;
     initialize();
 
-    geocodeAddress(start, function (results) {
+    geocodeAddress(start, function(results) {
       var origin = convertGeocodeObjectToLatLng(results);
       geocodeAddress(end, function (results) {
         var destination = convertGeocodeObjectToLatLng(results);
