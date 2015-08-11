@@ -49,13 +49,15 @@ $(document).ready( function() {
     var request = {
       location: midpoint,
       radius: distance,
-      types: ["amusement_park", "aquarium", "art_gallery", "museum", "stadium", "zoo"],
+      types: ["amusement_park", "aquarium", "art_gallery", "museum", "zoo"],
       rankBy: google.maps.places.RankBy.PROMINENCE
     };
     service.nearbySearch(request, callback);
   }
 
   function callback(results, status) {
+    debugger;
+    $('#place-title').append(results[0].name);
     waypoints.push({
       location: results[0].geometry.location,
       stopover: true 
