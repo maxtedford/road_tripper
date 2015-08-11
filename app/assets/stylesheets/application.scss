@@ -117,15 +117,25 @@ span.glyphicon.glyphicon-chevron-down {
 }
 
 .index-guide {
-  color: white;
   text-align: center;
   font-family: 'Lobster', cursive;
 }
 
-h2.index-guide {
+.label {
   color: white;
+}
+
+.index-guide.form-title {
+  color: white;
+}
+
+h2.index-guide {
   display: inline;
   font-size: 40px;
+}
+
+h2.index-guide.form-title {
+  color: white;
 }
 
 p.index-text {
@@ -179,4 +189,12 @@ button#route-submit {
 
 div.col-md-12 {
   margin-bottom: 20px;
+}
+
+div.form-group {
+  margin-top: 10px;
+}
+
+h2#place-title.index-guide {
+  color: white;
 }

@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="index-guide">Welcome, <%= current_user.first_name %>!<br> Let's find something off the beaten path...</h1>
+      <h1 class="index-guide form-title">Welcome, <%= current_user.first_name %>!<br> Let's find something off the beaten path...</h1>
     </div>
   </div>
 </div>
@@ -15,17 +15,15 @@
   <form>
     <div class="row index-guides">
       <div class="col-md-6">
-        <h2 class="index-guide origin">Origin:</h2>
+        <h2 class="index-guide form-title">Origin:</h2>
         <div class="form-group">
-          <label for="origin" class="origin">Address or City</label>
-          <input type="text" class="form-control" id="origin-field" placeholder="Origin">
+          <input type="text" class="form-control" id="origin-field" placeholder="Address or City">
         </div>
       </div>
       <div class="col-md-6">
-        <h2 class="index-guide">Destination:</h2>
+        <h2 class="index-guide form-title">Destination:</h2>
         <div class="form-group">
-          <label for="destination">Address or City</label>
-          <input type="text" class="form-control" id="destination-field" placeholder="Destination">
+          <input type="text" class="form-control" id="destination-field" placeholder="Address or City">
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-lg" id="route-submit">Submit</button>
