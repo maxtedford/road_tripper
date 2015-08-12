@@ -6,6 +6,7 @@ var service;
 var waypoints;
 var start;
 var end;
+var index;
 
 function geocodeAddress(input, callback) {
   geocoder = new google.maps.Geocoder();
@@ -62,7 +63,7 @@ function conductSearch(midpoint, distance) {
 }
 
 function renderPointOfInterest(results) {
-  var place = results[0];
+  var place = results[index];
   if (place) {
     waypoints.push({
       location: place.geometry.location,
@@ -95,6 +96,7 @@ function calculateDistance(origin, destination) {
 
 function displayRoute(start, end, place) {
   $('#place-title').append(place.name);
+  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Get another landmark</a>");
   var request = {
     origin : start,
     destination : end,
@@ -124,7 +126,8 @@ function displaySimpleRoute(start, end) {
 }
 
 $(document).ready(function() {
-  
+
+  index = 0;
   initialize();
   
   $('#route-submit').click();
@@ -135,6 +138,7 @@ $(document).ready(function() {
     $('body').animate({scrollTop: placeTitle.offset().top},'slow');
 
     $('#place-title').empty();
+    $('#next-button').empty();
     waypoints = [];
     start = document.getElementById("origin-field").value;
     end = document.getElementById("destination-field").value;
@@ -151,4 +155,31 @@ $(document).ready(function() {
       })
     });
   });
+  
+  $('#next-button').on('click', function() {
+    index += 1
+
+    initialize();
+    
+    var placeTitle = $('#place-title');
+    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
+
+    $('#place-title').empty();
+    $('#next-button').empty();
+    waypoints = [];
+    start = document.getElementById("origin-field").value;
+    end = document.getElementById("destination-field").value;
+    initialize();
+
+    geocodeAddress(start, function(results) {
+      var origin = convertGeocodeObjectToLatLng(results);
+      geocodeAddress(end, function (results) {
+        var destination = convertGeocodeObjectToLatLng(results);
+
+        var distance = calculateDistance(origin, destination);
+        var midpoint = calculateMidpoint(origin, destination);
+        conductSearch(midpoint, distance);
+      })
+    });
+  })
 });
