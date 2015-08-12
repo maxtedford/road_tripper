@@ -205,8 +205,17 @@ h2#place-title.index-guide {
 
 div#directions-panel {
   background: white;
+  width: 500px;
 }
 
 div#next-button {
+  padding-top: 0px;
+}
+
+div#directions-row {
+  padding-left: 320px;
+}
+
+div#directions-col {
   padding-top: 0px;
 }
