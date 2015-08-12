@@ -125,61 +125,41 @@ function displaySimpleRoute(start, end) {
   });
 }
 
-$(document).ready(function() {
+function execute() {
+  var placeTitle = $('#place-title');
+  $('body').animate({scrollTop: placeTitle.offset().top},'slow');
 
+  $('#place-title').empty();
+  $('#next-button').empty();
+  waypoints = [];
+  start = document.getElementById("origin-field").value;
+  end = document.getElementById("destination-field").value;
+  initialize();
+
+  geocodeAddress(start, function(results) {
+    var origin = convertGeocodeObjectToLatLng(results);
+    geocodeAddress(end, function (results) {
+      var destination = convertGeocodeObjectToLatLng(results);
+
+      var distance = calculateDistance(origin, destination);
+      var midpoint = calculateMidpoint(origin, destination);
+      conductSearch(midpoint, distance);
+    })
+  });
+}
+
+$(document).ready(function() {
   index = 0;
   initialize();
-  
   $('#route-submit').click();
   
   $('#route-submit').on('click', function() {
-
-    var placeTitle = $('#place-title');
-    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
-    $('#place-title').empty();
-    $('#next-button').empty();
-    waypoints = [];
-    start = document.getElementById("origin-field").value;
-    end = document.getElementById("destination-field").value;
-    initialize();
-
-    geocodeAddress(start, function(results) {
-      var origin = convertGeocodeObjectToLatLng(results);
-      geocodeAddress(end, function (results) {
-        var destination = convertGeocodeObjectToLatLng(results);
-        
-        var distance = calculateDistance(origin, destination);
-        var midpoint = calculateMidpoint(origin, destination);
-        conductSearch(midpoint, distance);
-      })
-    });
+    execute();
   });
   
   $('#next-button').on('click', function() {
-    index += 1
-
+    index += 1;
     initialize();
-    
-    var placeTitle = $('#place-title');
-    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
-    $('#place-title').empty();
-    $('#next-button').empty();
-    waypoints = [];
-    start = document.getElementById("origin-field").value;
-    end = document.getElementById("destination-field").value;
-    initialize();
-
-    geocodeAddress(start, function(results) {
-      var origin = convertGeocodeObjectToLatLng(results);
-      geocodeAddress(end, function (results) {
-        var destination = convertGeocodeObjectToLatLng(results);
-
-        var distance = calculateDistance(origin, destination);
-        var midpoint = calculateMidpoint(origin, destination);
-        conductSearch(midpoint, distance);
-      })
-    });
+    execute();
   })
 });
