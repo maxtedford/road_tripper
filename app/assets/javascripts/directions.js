@@ -128,7 +128,10 @@ $(document).ready(function() {
   
   $('#route-submit').click();
   
-  $('#route-submit').on('click', function() {
+  $('#route-submit').on('click', function(e) {
+
+    var placeTitle = $('#place-title');
+    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
 
     $('#place-title').empty();
     waypoints = [];
