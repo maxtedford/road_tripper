@@ -15,7 +15,7 @@ describe 'the unauthenticated user', type: :feature do
 
       assert_equal 200, page.status_code
 
-      click_link "Get Started!"
+      click_link "Hit the Road!"
       assert_equal "/dashboard", current_path
       assert page.has_content?("Welcome, Max!")
       assert page.has_link?("Logout")

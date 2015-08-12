@@ -42,7 +42,7 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+  directionsDisplay.setPanel(document.getElementById("directions-panel"));
 }
 
 function conductSearch(midpoint, distance) {
@@ -63,20 +63,16 @@ function conductSearch(midpoint, distance) {
 
 function renderPointOfInterest(results) {
   var place = results[0];
-  waypoints.push({
-    location: place.geometry.location,
-    stopover: true
-  });
-  service.getDetails({placeId: place.id}, function(results, status) {
-    var place = results;
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      createMarker(place);
-      var website = place.website;
-      displayRoute(start, end, place, website);
-    } else {
-      displaySimpleRoute(start, end);
-    }    
-  });
+  if (place) {
+    waypoints.push({
+      location: place.geometry.location,
+      stopover: true
+    });
+    createMarker(place);
+    displayRoute(start, end, place);
+  } else {
+    displaySimpleRoute(start, end);
+  }
 }
 
 function createMarker(place) {
@@ -130,9 +126,6 @@ function displaySimpleRoute(start, end) {
 $(document).ready(function() {
   
   initialize();
-
-  $('#map-canvas').toggleClass('.map-adjust');
-  $('#directions-panel').toggleClass('.directions-adjust');
   
   $('#route-submit').click();
   

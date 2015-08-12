@@ -15,7 +15,7 @@ describe 'the unauthenticated user', type: :feature do
     it 'displays the welcome message' do
       expect(page).to have_content("RoadTripper")
       expect(page).to have_content("Helping you discover the best your road trip has to offer")
-      expect(page).to have_link("Get Started!")
+      expect(page).to have_link("Hit the Road!")
     end
   end
 end
