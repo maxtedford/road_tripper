@@ -18,23 +18,6 @@ function convertGeocodeObjectToLatLng(results) {
   return new google.maps.LatLng(latlng["G"], latlng["K"]);
 }
 
-function extractCoordinates() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(coords);
-    debugger;
-  } else {
-    var x = document.getElementById("map-canvas");
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function coords(position) {
-  var coordinates = new google.maps.LatLng({ 
-    lat: position.coords.latitude,
-    lng: position.coords.longitude });
-  initialize(coordinates)
-}
-
 function initialize() {
   var mapOptions = {
     zoom: 4,
