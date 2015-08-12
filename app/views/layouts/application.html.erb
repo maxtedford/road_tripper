@@ -23,17 +23,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<% dashboard_path %>">
-          <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
-          <p class="roadtripper-logo-text">RoadTripper</p>
-        </a>
+        <p class="roadtripper-logo-text">RoadTripper</p>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="<%= dashboard_path %>" id="nav-user-name"><%= current_user.first_name %></a>
+            <p class="roadtripper-logo-text"><%= current_user.first_name %></p>
           </li>
           <li>
             <img src="<%= current_user.image %>" alt="user-image" class="img-circle img-responsive center-block">
@@ -43,9 +40,9 @@
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-<% end %>
+  </div><!-- /.container-fluid -->
+    </nav>
+  <% end %>
 
 <%= yield %>
 

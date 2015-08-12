@@ -96,7 +96,7 @@ function calculateDistance(origin, destination) {
 
 function displayRoute(start, end, place) {
   $('#place-title').append(place.name);
-  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Get another landmark</a>");
+  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Get a different landmark</a>");
   var request = {
     origin : start,
     destination : end,
@@ -112,7 +112,7 @@ function displayRoute(start, end, place) {
 }
 
 function displaySimpleRoute(start, end) {
-  $('#place-title').append("You may have to stay on the beaten path for this one...");
+  $('#place-title').append("You may have to stay on the beaten path this time...");
   var request = {
     origin: start,
     destination: end,
@@ -125,41 +125,56 @@ function displaySimpleRoute(start, end) {
   });
 }
 
-function execute() {
-  var placeTitle = $('#place-title');
-  $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
-  $('#place-title').empty();
-  $('#next-button').empty();
-  waypoints = [];
-  start = document.getElementById("origin-field").value;
-  end = document.getElementById("destination-field").value;
-  initialize();
-
-  geocodeAddress(start, function(results) {
-    var origin = convertGeocodeObjectToLatLng(results);
-    geocodeAddress(end, function (results) {
-      var destination = convertGeocodeObjectToLatLng(results);
-
-      var distance = calculateDistance(origin, destination);
-      var midpoint = calculateMidpoint(origin, destination);
-      conductSearch(midpoint, distance);
-    })
-  });
-}
-
 $(document).ready(function() {
   index = 0;
-  initialize();
   $('#route-submit').click();
+  initialize();
   
   $('#route-submit').on('click', function() {
-    execute();
+    var placeTitle = $('#place-title');
+    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
+
+    $('#place-title').empty();
+    $('#next-button').empty();
+    waypoints = [];
+    start = document.getElementById("origin-field").value;
+    end = document.getElementById("destination-field").value;
+    initialize();
+
+    geocodeAddress(start, function(results) {
+      var origin = convertGeocodeObjectToLatLng(results);
+      geocodeAddress(end, function (results) {
+        var destination = convertGeocodeObjectToLatLng(results);
+
+        var distance = calculateDistance(origin, destination);
+        var midpoint = calculateMidpoint(origin, destination);
+        conductSearch(midpoint, distance);
+      })
+    });
   });
   
   $('#next-button').on('click', function() {
     index += 1;
     initialize();
-    execute();
+    var placeTitle = $('#place-title');
+    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
+
+    $('#place-title').empty();
+    $('#next-button').empty();
+    waypoints = [];
+    start = document.getElementById("origin-field").value;
+    end = document.getElementById("destination-field").value;
+    initialize();
+
+    geocodeAddress(start, function(results) {
+      var origin = convertGeocodeObjectToLatLng(results);
+      geocodeAddress(end, function (results) {
+        var destination = convertGeocodeObjectToLatLng(results);
+
+        var distance = calculateDistance(origin, destination);
+        var midpoint = calculateMidpoint(origin, destination);
+        conductSearch(midpoint, distance);
+      })
+    });
   })
 });
