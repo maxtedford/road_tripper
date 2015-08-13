@@ -192,6 +192,11 @@ button#route-submit {
 }
 
 div.col-md-12 {
+  padding-top: 70px;
+}
+
+div#place-title-container {
+  padding-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -201,6 +206,7 @@ div.form-group {
 
 h2#place-title.index-guide {
   color: white;
+  margin-bottom: 20px;
 }
 
 div#directions-panel {
@@ -208,8 +214,14 @@ div#directions-panel {
   width: 500px;
 }
 
-div#next-button {
+div#next-button.col-md-3 {
   padding-top: 0px;
+  text-align: center;
+}
+
+div#directions-button.col-md-3 {
+  padding-top: 0px;
+  text-align: center;
 }
 
 div#directions-row {
@@ -218,4 +230,18 @@ div#directions-row {
 
 div#directions-col {
   padding-top: 0px;
+}
+
+button#route-submit {
+  font-family: 'Lobster', cursive;
+}
+
+a#next-button {
+  font-family: 'Lobster', cursive;
+  margin-bottom: 20px;
+}
+
+a#directions-button {
+  font-family: 'Lobster', cursive;
+  margin-bottom: 20px;
 }

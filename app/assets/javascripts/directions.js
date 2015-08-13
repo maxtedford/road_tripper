@@ -79,7 +79,8 @@ function createMarker(place) {
 
 function displayRoute(start, end, place) {
   $('#place-title').append(place.name);
-  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Try something else</a>");
+  $('#next-button').append("<a class='btn btn-default btn-lg' id='next-button' href='#' role='button'>Try something else</a>");
+  $('#directions-button').append("<a class='btn btn-default btn-lg' id='directions-button' href='#' role='button'>See directions</a>");
   var request = {
     origin : start,
     destination : end,
@@ -114,6 +115,7 @@ function execute() {
 
   $('#place-title').empty();
   $('#next-button').empty();
+  $('#directions-button').empty();
   waypoints = [];
   start = document.getElementById("origin-field").value;
   end = document.getElementById("destination-field").value;
@@ -138,6 +140,11 @@ $(document).ready(function() {
   
   $('#route-submit').on('click', function() {
     execute();
+  });
+  
+  $('#directions-button').on('click', function() {
+    var directions = $('#directions-row');
+    $('body').animate({scrollTop: directions.offset().top},'slow');
   });
   
   $('#next-button').on('click', function() {
