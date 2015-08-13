@@ -110,9 +110,6 @@ function displaySimpleRoute(start, end) {
 }
 
 function execute() {
-  var placeTitle = $('#place-title');
-  $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
   $('#place-title').empty();
   $('#next-button').empty();
   $('#directions-button').empty();
@@ -129,6 +126,8 @@ function execute() {
       var distance = calculateDistance(origin, destination);
       var midpoint = calculateMidpoint(origin, destination);
       conductSearch(midpoint, distance);
+      var placeTitle = $('#place-title');
+      $('body').animate({scrollTop: placeTitle.offset().top},'slow');
     })
   });
 }
