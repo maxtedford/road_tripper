@@ -1,12 +1,23 @@
 var directionsDisplay = new google.maps.DirectionsRenderer();
 var directionsService = new google.maps.DirectionsService();
-var geocoder;
 var map;
-var service;
-var waypoints;
 var start;
 var end;
+var geocoder;
+var service;
+var waypoints;
 var index;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 4,
+    center: {lat: 39.091919, lng: -94.5757195},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById("directions-panel"));
+}
 
 function geocodeAddress(input, callback) {
   geocoder = new google.maps.Geocoder();
@@ -18,15 +29,14 @@ function convertGeocodeObjectToLatLng(results) {
   return new google.maps.LatLng(latlng["G"], latlng["K"]);
 }
 
-function initialize() {
-  var mapOptions = {
-    zoom: 4,
-    center: {lat: 39.091919, lng: -94.5757195},
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-  directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(document.getElementById("directions-panel"));
+function calculateMidpoint(origin, destination) {
+  var midpoint = google.maps.geometry.spherical.interpolate(origin, destination, 0.5);
+  return midpoint
+}
+
+function calculateDistance(origin, destination) {
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
+  return distance;
 }
 
 function conductSearch(midpoint, distance) {
@@ -67,19 +77,9 @@ function createMarker(place) {
   marker.setMap(map);
 }
 
-function calculateMidpoint(origin, destination) {
-  var midpoint = google.maps.geometry.spherical.interpolate(origin, destination, 0.5);
-  return midpoint
-}
-
-function calculateDistance(origin, destination) {
-  var distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
-  return distance;
-}
-
 function displayRoute(start, end, place) {
   $('#place-title').append(place.name);
-  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Get a different landmark</a>");
+  $('#next-button').append("<a class='btn btn-default btn-md' href='#' role='button'>Try something else</a>");
   var request = {
     origin : start,
     destination : end,
@@ -108,56 +108,41 @@ function displaySimpleRoute(start, end) {
   });
 }
 
+function execute() {
+  var placeTitle = $('#place-title');
+  $('body').animate({scrollTop: placeTitle.offset().top},'slow');
+
+  $('#place-title').empty();
+  $('#next-button').empty();
+  waypoints = [];
+  start = document.getElementById("origin-field").value;
+  end = document.getElementById("destination-field").value;
+  initialize();
+
+  geocodeAddress(start, function(results) {
+    var origin = convertGeocodeObjectToLatLng(results);
+    geocodeAddress(end, function (results) {
+      var destination = convertGeocodeObjectToLatLng(results);
+
+      var distance = calculateDistance(origin, destination);
+      var midpoint = calculateMidpoint(origin, destination);
+      conductSearch(midpoint, distance);
+    })
+  });
+}
+
 $(document).ready(function() {
   index = 0;
   $('#route-submit').click();
   initialize();
   
   $('#route-submit').on('click', function() {
-    var placeTitle = $('#place-title');
-    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
-    $('#place-title').empty();
-    $('#next-button').empty();
-    waypoints = [];
-    start = document.getElementById("origin-field").value;
-    end = document.getElementById("destination-field").value;
-    initialize();
-
-    geocodeAddress(start, function(results) {
-      var origin = convertGeocodeObjectToLatLng(results);
-      geocodeAddress(end, function (results) {
-        var destination = convertGeocodeObjectToLatLng(results);
-
-        var distance = calculateDistance(origin, destination);
-        var midpoint = calculateMidpoint(origin, destination);
-        conductSearch(midpoint, distance);
-      })
-    });
+    execute();
   });
   
   $('#next-button').on('click', function() {
     index += 1;
     initialize();
-    var placeTitle = $('#place-title');
-    $('body').animate({scrollTop: placeTitle.offset().top},'slow');
-
-    $('#place-title').empty();
-    $('#next-button').empty();
-    waypoints = [];
-    start = document.getElementById("origin-field").value;
-    end = document.getElementById("destination-field").value;
-    initialize();
-
-    geocodeAddress(start, function(results) {
-      var origin = convertGeocodeObjectToLatLng(results);
-      geocodeAddress(end, function (results) {
-        var destination = convertGeocodeObjectToLatLng(results);
-
-        var distance = calculateDistance(origin, destination);
-        var midpoint = calculateMidpoint(origin, destination);
-        conductSearch(midpoint, distance);
-      })
-    });
+    execute();
   })
 });
