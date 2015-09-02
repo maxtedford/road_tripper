@@ -1,13 +1,8 @@
 == README
 
-* Details
-
 RoadTripper is a web app that uses the Google Maps JavaScript API V3 to help users find off-the-beaten-path
 destinations to stop on their road trips.
 
 * Test suite can be run by cloning the repo and running rspec
 
 * Production app: https://road-tripper.herokuapp.com
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
