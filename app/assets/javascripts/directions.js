@@ -119,12 +119,9 @@ function execute() {
   initialize();
 
   geocodeAddress(start, function(results) {
-    debugger;
     var origin = convertGeocodeObjectToLatLng(results);
-    debugger;
     geocodeAddress(end, function (results) {
       var destination = convertGeocodeObjectToLatLng(results);
-      debugger;
       var distance = calculateDistance(origin, destination);
       var midpoint = calculateMidpoint(origin, destination);
       conductSearch(midpoint, distance);
