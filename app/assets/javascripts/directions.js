@@ -26,7 +26,7 @@ function geocodeAddress(input, callback) {
 
 function convertGeocodeObjectToLatLng(results) {
   var latlng = results[0].geometry.location;
-  return new google.maps.LatLng(latlng["H"], latlng["L"]);
+  return new google.maps.LatLng(latlng.lat(), latlng.lng());
 }
 
 function calculateMidpoint(origin, destination) {
